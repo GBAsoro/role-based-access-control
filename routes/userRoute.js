@@ -1,7 +1,7 @@
 const express = require("express");
 
-const authorizeRole = require("../middlewears/rolemiddlewear");
-const verifyToken = require("../middlewears/authmiddlewear");
+const authorizeRole = require("../middlewears/roleMiddlewear");
+const verifyToken = require("../middlewears/authMiddlewear");
 
 const router = express.Router();
 
@@ -13,17 +13,27 @@ router.get("/admin", verifyToken, authorizeRole("admin"), (req, res) => {
 });
 
 // Both admin and manager can access this route
-router.get("/manager", verifyToken, authorizeRole("admin", "manager"), (req, res) => {
-  res.json({
-    message: "Welcome Manager",
-  });
-});
+router.get(
+  "/manager",
+  verifyToken,
+  authorizeRole("admin", "manager"),
+  (req, res) => {
+    res.json({
+      message: "Welcome Manager",
+    });
+  }
+);
 
 // All can access this route
-router.get("/user", verifyToken, authorizeRole("admin", "manager", "user"), (req, res) => {
-  res.json({
-    message: "Welcome User",
-  });
-});
+router.get(
+  "/user",
+  verifyToken,
+  authorizeRole("admin", "manager", "user"),
+  (req, res) => {
+    res.json({
+      message: "Welcome User",
+    });
+  }
+);
 
 module.exports = router;
