@@ -10,6 +10,7 @@ const register = async (req, res) => {
     await newUser.save();
     res.status(201).json({
       message: `User register with username ${username}`,
+      data: newUser,
     });
   } catch (err) {
     res.status(500).json({

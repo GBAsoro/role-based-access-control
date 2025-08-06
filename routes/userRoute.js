@@ -13,27 +13,17 @@ router.get("/admin", verifyToken, authorizeRole("admin"), (req, res) => {
 });
 
 // Both admin and manager can access this route
-router.get(
-  "/manager",
-  verifyToken,
-  authorizeRole("admin", "manager"),
-  (req, res) => {
-    res.json({
-      message: "Welcome Manager",
-    });
-  }
-);
+router.get("/manager", verifyToken, authorizeRole("admin", "manager"), (req, res) => {
+  res.json({
+    message: "Welcome Manager",
+  });
+});
 
 // All can access this route
-router.get(
-  "/user",
-  verifyToken,
-  authorizeRole("admin", "manager", "user"),
-  (req, res) => {
-    res.json({
-      message: "Welcome User",
-    });
-  }
-);
+router.get("/user", verifyToken, authorizeRole("admin", "manager", "user"), (req, res) => {
+  res.json({
+    message: "Welcome User",
+  });
+});
 
 module.exports = router;
