@@ -10,6 +10,10 @@ const app = express();
 
 app.use(express.json());
 
+app.get('/", (req, res) => {
+        res.send("App Working")
+})
+
 // Routes
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
