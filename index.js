@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.get('/", (req, res) => {
         res.send("App Working")
-})
+});
 
 // Routes
 app.use("/api/auth", authRoute);
